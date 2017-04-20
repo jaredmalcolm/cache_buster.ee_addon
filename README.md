@@ -1,6 +1,6 @@
 # Cache Buster
 
-An ExpressionEngine plugin that adds a simple cache buster to your flat file references. This is a forked project to make the project compatible with EE3
+An ExpressionEngine plugin that adds a simple cache buster to your flat file references. This is a forked project to make the plugin compatible with EE3
 
 
 ## Compatibility
