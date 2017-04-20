@@ -53,6 +53,10 @@ If your file isn't being read by the plugin then the server root might not be th
 
 ## Change Log
 
+*Apr 20th, 2017: 2.0.0*
+
+* Converted to EE3 plugin
+
 *Feb 17th, 2011: 1.1.1*
 
 * Bug: Fixed bug where root_path wasn't set correctly
