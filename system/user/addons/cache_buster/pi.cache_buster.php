@@ -1,9 +1,9 @@
 <?php
-// ini_set('display_errors',E_ALL);
+namespace Midwestern\Plugins;
 
 /**
  * Cache Buster
- * 
+ *
  * This file must be placed in the
  * system/plugins/ folder in your ExpressionEngine installation.
  *
@@ -29,31 +29,29 @@ class Cache_buster
 
    public $return_data  = "";
 
-   public function Cache_buster()
+   public function __constructor()
    {
-      
+
       if (version_compare(APP_VER, '2', '<'))
       {
-         
+
          global $REGX, $TMPL;
 
          $file = ($TMPL->fetch_param('file') != '') ? $TMPL->fetch_param('file') : FALSE ;
          $separator = ($TMPL->fetch_param('separator') != '') ? $TMPL->fetch_param('separator') : '?v=' ;
          $root_path = ($TMPL->fetch_param('root_path') != '') ? $TMPL->fetch_param('root_path') : $_SERVER['DOCUMENT_ROOT'] ;
          $time = filemtime($root_path.$REGX->xss_clean(html_entity_decode($file)));
-         
+
       } else {
-         
-         $this->EE =& get_instance();
-         
-         $file = ($this->EE->TMPL->fetch_param('file') != '') ? $this->EE->TMPL->fetch_param('file') : FALSE ;
-         $separator = ($this->EE->TMPL->fetch_param('separator') != '') ? $this->EE->TMPL->fetch_param('separator') : '?v=' ;
-         $root_path = ($this->EE->TMPL->fetch_param('root_path') != '') ? $this->EE->TMPL->fetch_param('root_path') : $_SERVER['DOCUMENT_ROOT'] ;
-         $time = filemtime($root_path.$this->EE->security->xss_clean(html_entity_decode($file)));
-         
+
+         $file = (ee()->TMPL->fetch_param('file') != '') ? ee()->TMPL->fetch_param('file') : FALSE ;
+         $separator = (ee()->TMPL->fetch_param('separator') != '') ? ee()->TMPL->fetch_param('separator') : '?v=' ;
+         $root_path = (ee()->TMPL->fetch_param('root_path') != '') ? ee()->TMPL->fetch_param('root_path') : $_SERVER['DOCUMENT_ROOT'] ;
+         $time = filemtime($root_path.ee()->security->xss_clean(html_entity_decode($file)));
+
       }
 
-      
+
       if ($file)
       {
          $return = $file;
@@ -76,7 +74,7 @@ class Cache_buster
 
    public static function usage()
    {
-      ob_start(); 
+      ob_start();
 ?>
 
 Using ExpressionEngine's CSS template provides a nice cache buster string of the most recent time
@@ -107,7 +105,7 @@ This will return
 <?php
       $buffer         = ob_get_contents();
 
-      ob_end_clean(); 
+      ob_end_clean();
 
       return $buffer;
    }
