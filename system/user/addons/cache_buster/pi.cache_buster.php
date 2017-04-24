@@ -29,8 +29,9 @@ class Cache_buster
 
    public $return_data  = "";
 
-   public function __constructor()
+   public function __construct()
    {
+      $return = '';
 
       if (version_compare(APP_VER, '2', '<'))
       {
